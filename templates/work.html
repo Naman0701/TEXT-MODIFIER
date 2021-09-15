@@ -6,7 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLASS</title>
 </head>
+<style>
+    html{
+        background-color: antiquewhite;
+    }
+    .con{
+        background-color: burlywood;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .anc{
+        width: 20%;
+        border: 15px solid crimson;
+        padding: 20px;
+        margin: 25px;
+        border-radius: 35px;
+        background-color: aquamarine;
+        /*background-color: cyan;*/
+        text-decoration: none;
+        cursor: pointer;
+        display: inline;
+        text-align: center;
+    }
+</style>
 <body>
+<div class="con">
 <h1>{{name}}</h1>
 
     <h3>{{old_op}}</h3>
@@ -15,11 +41,8 @@
     <h3>{{new_op}}</h3>
     {{new}}
 
-<a href="/" style="display: block "> BACK </a>
+<a class='anc' href="/" style="display: block "> BACK </a>
+    </div>
 </body>
 
-<script>
-    let data=JSON.parse("{{data|escapejs}}");
-
-</script>
 </html>
