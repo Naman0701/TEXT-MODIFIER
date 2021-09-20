@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(req):
-    return render(req,'homepg.html')
+    return render(req,'index.html')
 def analyze(req):
     matter=req.GET.get('text','NAN')
     orig=matter
