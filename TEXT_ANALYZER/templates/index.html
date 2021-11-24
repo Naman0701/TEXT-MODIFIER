@@ -22,6 +22,8 @@
         }
         .checker{
             position: relative;
+            display: flex;
+            flex-flow: wrap row;
             /*left: 15%%;*/
         }
         input,label{
@@ -44,6 +46,56 @@
     }
     ::-webkit-scrollbar-thumb:hover{
         background-color: #cc6c31;
+
+    }
+    .toggle{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 3px;
+    }
+    .switch{
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 24px;
+        margin-right: 6px;
+    }
+    .switch input{
+        display: none;
+    }
+    .slider{
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ff0000;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 24px;
+    }
+    .slider:before{
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: cyan;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+    input:checked + .slider  {
+        background-color: #009b08;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(16px);
+      -ms-transform: translateX(16px);
+      transform: translateX(16px);
     }
     </style>
 </head>
@@ -53,20 +105,40 @@
 <form name='f1' action="/analyze" method="get">
     <div style="display: flex; flex-flow: column; justify-content: center; align-items: center">
         <div style="display: flex;width: 100%;justify-content: space-around" >
-        <label for="txtfr" style=" height:25%; border: 6px solid crimson;background-color: burlywood; border-radius: 0px 75px 75px 0px; padding-right:25px; width: 15%;margin: 5px " >YOUR TEXT HERE: </label>
+            <label for="txtfr" style=" height:25%; border: 6px solid crimson;background-color: burlywood; border-radius: 0px 75px 75px 0px; padding-right:25px; width: 15%;margin: 5px " >YOUR TEXT HERE: </label>
         <textarea autofocus name="text" style="width: 75%; border-radius: 26px; border: 19px solid green; background-color: darkkhaki;margin: 5px" id="txtfr" cols="15" rows="10" placeholder="ANY PARA YOU WANT TO REMOVE PUNCTUATIONS FROM"></textarea>
         </div>
         <div class="checker">
-        <input type="checkbox" name="rem_punc" id="punc">
-            <label for="punc">REMOVE PUNC</label>
-        <input type="checkbox" name="caps" id="caps">
-            <label for="caps">CAPITALIZE FIRST TEXT</label>
-        <input type="checkbox" name="delln" id="delln">
-            <label for="delln">DELETE NEW LINE</label>
-        <input type="checkbox" name="delsp" id="delsp">
-            <label for="delsp">DELETE EXTRA SPACES</label>
-        <input type="checkbox" name="ccount" id="ccount">
-            <label for="ccount">CHAR COUTER</label>
+            <div class="toggle">
+                <label class="switch"><input type="checkbox" name="rem_punc" id="punc">
+                    <span class="slider"></span>
+                </label>
+                <label for="punc">REMOVE PUNCTUATION</label>
+            </div>
+            <div class="toggle">
+                <label class="switch"><input type="checkbox" name="caps" id="caps">
+                    <span class="slider"></span>
+                </label>
+                <label for="caps">CAPITALIZE</label>
+            </div>
+            <div class="toggle">
+                <label class="switch"><input type="checkbox" name="delln" id="delln">
+                    <span class="slider"></span>
+                </label>
+                <label for="delln">DELETE NEW LINE</label>
+            </div>
+            <div class="toggle">
+                <label class="switch"><input type="checkbox" name="delsp" id="delsp">
+                    <span class="slider"></span>
+                </label>
+                <label for="delsp">DELETE SPACE</label>
+            </div>
+            <div class="toggle">
+                <label class="switch"><input type="checkbox" name="ccount" id="ccount">
+                    <span class="slider"></span>
+                </label>
+                <label for="ccount">CHAR COUNT</label>
+            </div>
          </div>
         <button type="submit"> ANALYZE TEXT </button>
     </div>
