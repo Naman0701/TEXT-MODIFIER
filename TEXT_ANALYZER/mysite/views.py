@@ -6,24 +6,24 @@ from django.shortcuts import render
 def index(req):
     return render(req,'index.html')
 def analyze(req):
-    matter=req.GET.get('text',None)
+    matter=req.POST.get('text',None).replace('\r','')
     orig=matter
-    rem_punc=req.GET.get('rem_punc','OFF')
-    caps=req.GET.get('caps','OFF')
-    delln=req.GET.get('delln','OFF')
-    delsp=req.GET.get('delsp','OFF')
-    ccount=req.GET.get('ccount','OFF')
+    rem_punc=req.POST.get('rem_punc','OFF')
+    caps=req.POST.get('caps','OFF')
+    delln=req.POST.get('delln','OFF')
+    delsp=req.POST.get('delsp','OFF')
+    ccount=req.POST.get('ccount','OFF')
     work=''
     if rem_punc=='on':
         mat=''.join(i for i in matter if i not in string.punctuation)
         work+="REMOVED PUNCTUATIONS\n"
         matter=mat
     if caps=='on':
-        mat = ' '.join(ele.capitalize() for ele in matter.replace('\n',' ').split(' '))
+        mat=matter.title()
         work+="CAPITALIZED\n"
         matter=mat
     if delln=='on':
-        mat = matter.replace('\n', 'N')
+        mat = matter.replace('\n', '')
         work+="DELETED NEW LINE\n"
         matter=mat
     if delsp=='on':
@@ -42,5 +42,4 @@ def analyze(req):
         'new': matter,
 
     }
-    print(work)
     return render(req,'work.html',dic)

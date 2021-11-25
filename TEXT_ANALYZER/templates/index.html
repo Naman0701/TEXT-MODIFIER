@@ -102,7 +102,7 @@
 
 
 <body>
-<form name='f1' action="/analyze" method="get">
+<form name='f1' action="/analyze" method="post"> {% csrf_token %}
     <div style="display: flex; flex-flow: column; justify-content: center; align-items: center">
         <div style="display: flex;width: 100%;justify-content: space-around" >
             <label for="txtfr" style=" height:25%; border: 6px solid crimson;background-color: burlywood; border-radius: 0px 75px 75px 0px; padding-right:25px; width: 15%;margin: 5px " >YOUR TEXT HERE: </label>
